@@ -54,7 +54,7 @@ SQLAlchemy==1.2.17
 stripe==2.24.1
 tinycss2==1.0.2
 traitlets==4.3.2
-urllib3==1.24.1
+urllib3==1.24.2
 WeasyPrint==47
 webencodings==0.5.1
 Werkzeug==0.14.1
