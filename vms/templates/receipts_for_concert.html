@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <center>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <font color = "red">
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {%endif%}
+        {%endwith%}
+      </font>
+    </center>
+<center>
+ <table class="table" style = "max-width: 75vw;">
+
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Receipt ID</th>
+              <th scope="col">User</th>
+              <th scope="col">Seats Purchased For Concert</th>
+              <th scope="col">Total Paid</th>
+              <th scope="col">Billing Name</th>
+              <th scope="col">Address</th>
+              <th scope="col">City</th>
+              <th scope="col">Province</th>
+              <th scope="col">Postal Code</th>
+              <th scope="col">Phone #</th>
+              <th scope="col">Email</th>
+              <th scope="col">Date Purchased</th>
+              
+        
+          </thead>
+
+          <tbody>
+            <tr>
+
+              {%for detail in receipts_info%}
+              <th scope="row">{{detail[1].id}}</th>
+              <td>{{detail[1].receipt_id}}</td>
+              <td>{{detail[0].username}} - {{detail[0].first_name}} {{detail[0].last_name}}</td>
+              <td>{{detail[2][0]}} {{detail[2][1]}}</td>
+              <td>{{detail[1].total_paid}}</td>
+              <td>{{detail[1].billing_name}}</td>
+              <td>{{detail[1].billing_address}}</td>
+              <td>{{detail[1].billing_city}}</td>
+              <td>{{detail[1].billing_province}}</td>
+              <td>{{detail[1].billing_postal_code}}</td>
+              <td>{{detail[1].billing_phone_number}}</td>
+              <td>{{detail[1].billing_email}}</td>
+              <td>{{detail[1].date_receipt_generated}}</td>
+            </tr>  
+
+              {%endfor%}
+            
+            
+        </tbody>
+  </table>
+  
+</center>
+
+
+
+{% endblock %}

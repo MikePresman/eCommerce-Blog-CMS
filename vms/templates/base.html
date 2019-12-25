@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="https://photos.google.com/photo/AF1QipOoZzgtP-EUZQ9XhikCVQTEYhfByoHmK5EcymA9">
+    <!-- Site Title -->
+    <title>Veronika's Music Studio</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700" rel="stylesheet">
+    <!-- Fonts for icons -->
+    <link href="/static/css/fontawesome-all.min.css" rel="stylesheet">
+    <!-- bootstrap -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Plugins CSS -->
+    <link href="/static/css/plugins/owl.carousel.min.css" rel="stylesheet">
+    <link href="/static/css/plugins/magnific-popup.css" rel="stylesheet">
+    <link href="/static/css/plugins/aos.css" rel="stylesheet">
+    <link href="/static/css/plugins/spacing-and-height.css" rel="stylesheet">
+    <!-- Style CSS -->
+    <link href="/static/css/theme-modules.css" rel="stylesheet">
+</head>
+
+<!-- Header -->
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid px-60px">
+        <a class="navbar-brand" href="{{url_for('index')}}">
+            <img class="etcodes-normal-logo" src="https://lh3.googleusercontent.com/sZTDXAeITEDVEYDwCR1XsEWNFsGh_cR0Rr8D8naykZFUDA1LtVxHup-BxUiscWLNT_e5WhyHKZ_cIdTV-pMsfOaVkkt6hVfGxrgEpvrhc7ZA4bNNjMUrjU7U6lqJcriKvHoQsW_G=s152-p-k" alt="Logo" width="84" height="22">
+            Veronika's Musical Theatre
+            <img class="etcodes-mobile-logo" src="https://lh3.googleusercontent.com/sZTDXAeITEDVEYDwCR1XsEWNFsGh_cR0Rr8D8naykZFUDA1LtVxHup-BxUiscWLNT_e5WhyHKZ_cIdTV-pMsfOaVkkt6hVfGxrgEpvrhc7ZA4bNNjMUrjU7U6lqJcriKvHoQsW_G=s152-p-k" alt="Logo" width="84" height="22">
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item dropdown mega_menu_holder current">
+                    <a class="nav-link" href="{{url_for('index')}}">Home</a>
+                </li>
+
+                <li class="nav-item dropdown mega_menu_holder current">
+                    <a class="nav-link" href="{{url_for('gallery', page = 1)}}">Gallery</a>
+                </li>
+
+                  <li class="nav-item dropdown mega_menu_holder current">
+                    <a class="nav-link" href="{{url_for('blog', page = 1)}}">Blog</a>
+                </li>
+
+                   <li class="nav-item dropdown mega_menu_holder current">
+                    <a class="nav-link" href="{{url_for('store')}}">Store</a>
+                </li>
+
+
+                 
+
+                {% if not current_user.is_authenticated %}
+                 <li class="nav-item dropdown mega_menu_holder current">
+                    <a class="nav-link" href="{{url_for('login')}}">Login</a>
+                </li>
+
+                 <li class="nav-item dropdown mega_menu_holder current">
+                    <a class="nav-link" href="{{url_for('register')}}">Register</a>
+                </li>
+                {% endif %}
+
+
+                {% if current_user.is_authenticated %}
+                  <li class="nav-item dropdown mega_menu_holder current">
+                  <a class="nav-link" href="{{url_for('my_account')}}">My Account</a>    
+                </li>
+
+                   <li class="nav-item dropdown mega_menu_holder current">
+                    <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+                </li>
+
+              
+        
+              
+
+                {% endif %}
+
+                {% if current_user.is_authenticated and user_authority_level == 1 %}
+                 <li class="nav-item dropdown mega_menu_holder current">
+                    <a class="nav-link" href="{{url_for('hkhome')}}">Housekeeping</a>
+                </li>
+                {% endif %}
+
+                {% if session['cart_count']%}
+                <li class="nav-item dropdown mega_menu_holder current">
+                    <a class="nav-link" href="{{url_for('checkout')}}"><img src = "/static/img/shoppingcart.jpg" height = "25" width = "25"></a>
+                </li>
+                <li class="nav-item dropdown mega_menu_holder current">
+                ({{session['cart_count']}})
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+</nav>
+<!-- End Header -->
+
+{% block content %}
+{% endblock %}
+
+    
+     <!-- footer  -->
+        <footer class="web-footer footer footer-top-border py-50px">
+            <div class="container">
+                <div class="row large-gutters">
+                    <div class="col-md-6">
+                        <div class="footer-widget text-center text-md-left mb-15px mb-md-0">
+                            <p class="m-0">© 2019 Veronika's Music Studio</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="footer-widget">
+                            <ul class="list-inline m-0 text-center text-md-right footer-nav">
+                                <li class="list-inline-item">
+                                    <a href="https://www.facebook.com/energeticthemes">
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="https://instagram.com/energeticthemes">
+                                        About us
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="https://behance.com/energeticthemes">
+                                        Contact
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="https://twitter.com/energeticthemes">
+                                        Store location
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </footer>
+    </div>
+    <!-- End main -->
+    </div>
+    <!-- ================================================== -->
+    <!-- Placed js files at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/plugins/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/static/js/plugins/aos.js"></script>
+    <script type="text/javascript" src="/static/js/plugins/isotope.pkgd.min.js"></script>
+    <script type="text/javascript" src="/static/js/plugins/jquery.countdown.min.js"></script>
+    <script type="text/javascript" src="/static/js/plugins/jquery.countTo.js"></script>
+    <script type="text/javascript" src="/static/js/plugins/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="/static/js/plugins/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="/static/js/plugins/onepage.min.js"></script>
+    <script type="text/javascript" src="/static/js/plugins/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="/static/js/plugins/instafeed.min.js"></script>
+    <script type="text/javascript" src="/static/js/plugins/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript" src="/static/js/plugins/contact-us.min.js"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAE_JprYsi2sHzUcl8u1DbcUgQnDveJWs4"></script>
+    <script type="text/javascript" src="/static/js/main.js"></script>
+
+<style>
+#ex4 .p1[data-count]:after{
+  position:absolute;
+  right:10%;
+  top:8%;
+  content: attr(data-count);
+  font-size:40%;
+  padding:.2em;
+  border-radius:50%;
+  line-height:1em;
+  color: white;
+  background:rgba(255,0,0,.85);
+  text-align:center;
+  min-width: 1em;
+  //font-weight:bold;
+}
+
+
+#ex3 .fa-stack[data-count]:after{
+  position:absolute;
+  right:0%;
+  top:1%;
+  content: attr(data-count);
+  font-size:30%;
+  padding:.6em;
+  border-radius:50%;
+  line-height:.8em;
+  color: white;
+  background:rgba(255,0,0,.85);
+  text-align:center;
+  min-width: 1em;
+  font-weight:bold;
+}
+
+
+/* on ex2 if you include bootstrap v3 css the number is a rounded circle with the .has-badge class */
+#ex2 .fa-stack[data-count]:after{
+  position:absolute;
+  right:0%;
+  top:1%;
+  content: attr(data-count);
+  font-size:30%;
+  padding:.6em;
+  border-radius:999px;
+  line-height:.75em;
+  color: white;
+  background:rgba(255,0,0,.85);
+  text-align:center;
+  min-width:2em;
+  font-weight:bold;
+}
+
+
+
+
+#ex1 .icon-grey {color: grey}
+#ex1 i {   
+    width:100px;
+    text-align:center;
+    vertical-align:middle;
+    position: relative;
+}
+#ex1 .badge:after{
+    content:"100";
+    position: absolute;
+    background: rgba(0,0,255,1);
+    height:2rem;
+    top:1rem;
+    right:1.5rem;
+    width:2rem;
+    text-align: center;
+    line-height: 2rem;;
+    font-size: 1rem;
+    border-radius: 50%;
+    color:white;
+    border:1px solid blue;
+}</style>

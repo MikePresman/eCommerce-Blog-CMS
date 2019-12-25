@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <center><h1>Ticket Editor</h1>
+    <form action="" method="post" enctype="multipart/form-data">
+        {{form.csrf_token}}
+        {{ form.hidden_tag() }}
+
+        <p>
+            {{ form.concert_title.label }}<br>
+            {{ form.concert_title(size=20) }}<br>
+            {% for error in form.concert_title.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+     
+        <p>
+            {{ form.price.label }}<br>
+            {{ form.price(size=10) }}<br>
+            {% for error in form.price.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        
+
+        <p>
+            {{ form.senior_price.label }}<br>
+            {{ form.senior_price(size=10) }}<br>
+            {% for error in form.senior_price.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.children_price.label }}<br>
+            {{ form.children_price(size=10) }}<br>
+            {% for error in form.senior_price.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+ 
+        <p>
+            <span class="btn btn-default btn-file">
+                Browse <input type="file" name="image">
+            </span>
+        </p>
+
+
+
+        <p>
+            {{ form.date_of_event.label }}<br>
+            {{ form.date_of_event(size=20) }}<br>
+            {% for error in form.date_of_event.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+             <p>
+            {{ form.time_of_event.label }}<br>
+            {{ form.time_of_event(size=20) }}<br>
+            {% for error in form.time_of_event.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.location.label }}<br>
+            {{ form.location(size=20) }}<br>
+            {% for error in form.location.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+           <p>
+            {{ form.description.label }}<br>
+            {{ form.description(cols="35", rows="20") }}<br>
+            {% for error in form.description.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+</div></center>
+
+
+{% endblock %}
+

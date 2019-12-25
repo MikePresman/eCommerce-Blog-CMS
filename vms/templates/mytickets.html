@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{%block content%}
+
+
+<div class="container">
+    <div id="blog" class="row"> 
+        <div class="col-sm-2 paddingTop20">
+            <nav class="nav-sidebar">
+                <ul class="nav">
+                    <li class="active"><a href="{{url_for("index")}}"><span class="glyphicon glyphicon-star"></span> Home</a></li>
+                    <li><a href="{{url_for('change_password')}}">Change Password</a></li>
+                    <li><a href="{{url_for('change_email')}}">Change Email</a></li>
+                    <li><a href="{{url_for('my_tickets')}}">My Tickets</a></li>
+            
+
+                    <li class="nav-divider"></li>
+                    <li><a href="{{url_for('logout')}}"><i class="glyphicon glyphicon-off"></i> - Sign Out</a></li>
+                </ul>
+            </nav>
+        </div>
+
+
+        
+
+        <div class="col-md-10 blogShort">
+
+            {%if tickets|length%}
+            <h3>Tickets will be sent to your email</h3>
+           <div class="container mb-80px">
+                <div class="gallery-gutters popup_gallery mb-50px">
+                    {%for concert_id, concert_image in tickets.items() %}
+                        <div class="col-4">
+                            <img src="{{concert_image[0]}}" alt="Image">
+                            <center>
+                                <form method = "POST" action = "">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                                <button class = "btn-primary btn-sm" size ="2" name = "concert_id" value = "{{concert_id}}">
+                                    Get Tickets
+                                </button></br>
+                                {{concert_image[1]}}
+                            </form>
+                            </center>
+                        </div>
+                    {% endfor %}       
+                </div>
+            </div>
+            {%else%}
+            You Have No Tickets !
+            {%endif%}
+
+
+                        
+                        
+
+
+
+      
+
+           
+
+       
+
+<!---------------------------->
+
+{%endblock%}

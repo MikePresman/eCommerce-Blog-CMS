@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<center>
+<h1>Ticket Generator</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name(size=20) }}<br>
+            {% for error in form.name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+     
+        <p>
+            {{ form.concert.label }}<br>
+            {{ form.concert(size=10) }}<br>
+            {% for error in form.concert.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+ 
+        <p>
+            {{ form.row.label }}<br>
+            {{ form.row(size=2) }}<br>
+            {% for error in form.row.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+ 
+        <p>
+            {{ form.seat.label }}<br>
+            {{ form.seat(size=10) }}<br>
+            {% for error in form.seat.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+             
+        
+        <p>{{ form.submit() }}</p>
+
+    </form>
+</center>
+
+
+{% endblock %}
+

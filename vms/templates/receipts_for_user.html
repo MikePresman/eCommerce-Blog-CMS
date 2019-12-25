@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <center>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <font color = "red">
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {%endif%}
+        {%endwith%}
+      </font>
+    </center>
+<center>
+ <table class="table" style = "max-width: 75vw;">
+
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Receipt ID</th>
+              <th scope="col">Concert Name</th>
+              <th scope="col">Seats Purchased for Concert</th>
+              <th scope="col">Total Paid On Receipt</th>
+              <th scope="col">Name</th>
+              <th scope="col">Address</th>
+              <th scope="col">City</th>
+              <th scope="col">Province</th>
+              <th scope="col">Postal Code</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Email</th>
+              <th scope="col">Date</th>
+              </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+            {%for concert_details, seat_details in receipts_info.items()%}
+              <td>{{concert_details.id}}</td>
+              <td>{{concert_details.receipt_id}}</td>
+              <td>{{concert_details.concert_id_associated}}</td>
+              <td>{%for each in seat_details%}
+                      {{each}}
+                  {%endfor%}</td>
+              <td>{{concert_details.total_paid}}</td>
+              <td>{{concert_details.billing_name}}</td>
+              <td>{{concert_details.billing_address}}</td>
+              <td>{{concert_details.billing_city}}</td>
+              <td>{{concert_details.billing_province}}</td>
+              <td>{{concert_details.billing_postal_code}}</td>
+              <td>{{concert_details.billing_phone_number}}</td>
+              <td>{{concert_details.billing_email}}</td>
+              
+              <td>{{concert_details.date_receipt_generated}}</td>
+            </tr>
+
+              {%endfor%}
+
+              
+            
+        </tbody>
+  </table>
+  
+</center>
+
+
+
+{% endblock %}

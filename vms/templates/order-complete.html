@@ -1,0 +1,28 @@
+{%extends 'base.html'%}
+{% block content%}
+  <center>
+        <font color = red>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {%endif%}
+        {%endwith%}
+
+        
+    </font>
+    </center>
+<center>
+<div class="jumbotron text-xs-center">
+  <h1 class="display-3">Thank You!</h1>
+  <p class="lead"><strong>Please check your email for your order</strong>.</p>
+  <hr>
+  <p>
+    Having trouble? Contact us
+  </p>
+</div>
+</center>
+{%endblock%}

@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <font color = red>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {%endif%}
+        {%endwith%}
+</font>
+</br>
+</br>
+<div class = "row">
+  <div class = "col-md-8">
+    <form name = "" method = "POST">	     
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        Row: <input type = "text" name = "row">
+        Seats: [delimit by comma] <input type = "text" name = "seats">
+         <button class = "btn-primary btn-sm" name = "update-submit">Add Seats</button>
+       </div>
+  <div class = "col-sm">
+         Search for Names: <input type="text" id="myInput" onkeyup="myFunction()" placeholder="">
+       </div>
+	</form>
+</div>
+
+</br></br>
+<center>
+<form method = "POST">  
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+<table class="table" id = "myTable" style = "max-width: 75vw;">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Concert</th>
+      <th scope="col">Row</th>
+      <th scope="col">Seat</th>
+      <th scope="col">Seat Filled</th>
+      <th scope="col">Seat Filled By</th>
+      <th scope="col">Seat Scanned</th>
+      <th scope="col">Scan Date</th>
+      <th scope="col">Delete Seat</th>
+      <th scope="col">Confirm</th>
+    </tr>
+  </thead>
+  <tbody>
+
+	{% for concert in concert_details %}  
+      <th scope="row">{{concert.id}}</th>
+      <td>{{concert.concert_name}}</td>
+      <td>{{concert.row}}</td>
+      <td>{{concert.seat}}</td>
+
+      {% if concert.filled == 0 %}
+        <td>No</td>
+        {%else%}
+        <td>Yes</td>
+      {%endif%}
+
+      <!--should make button clickable to see customer details etc-->
+      {% if concert.filled_by_customer_id is not none %}
+      <td>{{concert.filled_by_customer_id}} - {{concert.first_name}} {{concert.last_name}}</td>
+  	   {%else%}
+       <td>-</td>
+       {%endif%}
+      
+      {%if concert.attended == 0%}
+         <td> - </td>
+      {%else%}
+         <td> Yes</td>
+        {%endif%}
+
+    {%if concert.date_attended is none%}
+       <td></td>
+       {%else%}
+       <td>{{concert.date_attended}}</td>
+       {%endif%}
+
+             
+                    <td><button class = "btn-danger btn-sm" value = "{{concert.id}}" name = "delete">Delete</button</td>
+                    <td><input type="checkbox" value = "{{concert.id}}"name="confirm-delete[]">Confirm</td>
+              
+
+            </tr>
+  	{%endfor%}
+
+
+	</tbody>
+ </table>
+</form>
+
+
+<script>
+function myFunction() {
+  // Declare variables 
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[4];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    } 
+  }
+}
+</script>
+
+{% endblock %}
+</center>

@@ -1,0 +1,330 @@
+.sticky-header .site-header{
+	height:109px
+}
+.page-header .page-title{font-size:2rem}
+
+.taxonomy-description {
+    padding: 0px 80px;
+    text-align: left;
+}
+
+div.taxonomy-description > p > a {
+text-decoration: underline;
+}
+
+div#infinite-footer {
+    display: none;
+}
+
+.main-container {
+    margin-top: 1px;
+}
+
+#content  {
+    padding: 1px;
+}
+
+.search-wrap {
+    background: #ededed;
+    bottom: 70%;
+}
+
+.hero-banner{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	    margin-bottom: 40px;
+	
+}
+.hero-banner h1{
+	text-align:center;
+	font-size: 30px;
+	color:#3a3939;
+}
+
+@media only screen and (max-width: 767px) {
+	.taxonomy-description {
+    padding: 0px 30px;
+    text-align: left;
+}
+}
+
+.site-footer {
+	display: none;
+}
+
+h2{
+	    font-size: 1.8rem;
+}
+h3{
+	font-size: 1.5rem;
+}
+
+table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+
+table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+  
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  
+  table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  table td:last-child {
+    border-bottom: 0;
+  }
+}
+
+.masonry article{
+	height:450px;
+}
+
+input::placeholder {
+  color: #aaaaaa !important;
+}
+
+.rel-tags a {
+    font-size: 12px;
+    float: left;
+    border: 1px solid #ccc !important;
+    border-radius: 5px;
+    padding: 2px 5px;
+    margin: 2px;
+    text-transform: capitalize;
+	transition: background-color 0.5s ease;
+	background-color: #fff;
+}
+.rel-tags a:hover{
+	    background-color: #ccc;
+}
+#breadcrumbs{
+	margin-bottom:30px;
+	text-transform:capitalize;
+}
+
+/*Tags Style*/
+.cmu_tags {
+  margin-bottom: 20px;
+  overflow: hidden; 
+  padding: 0;
+	font-size: 12px;
+}
+
+
+.cmu_tags a {
+  background: #85c8ea;
+  border-radius: 3px 0 0 3px;
+  color: #fff !important;
+  display: inline-block !important;
+  height: 26px;
+	float:left;
+  line-height: 26px;
+  padding: 0 30px 0 10px;
+  position: relative;
+  margin: 0 3px 3px 0;
+  text-decoration: none;
+  -webkit-transition: color 0.2s;
+}
+
+.cmu_tags a::before {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+  content: '';
+  height: 6px;
+  right: 13px;
+  position: absolute;
+  width: 6px;
+  top: 10px;
+}
+
+.cmu_tags a::after {
+  background: #fff;
+  border-bottom: 13px solid transparent;
+  border-left: 10px solid #85c8ea;
+  border-top: 13px solid transparent;
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.cmu_tags a:hover {
+  background-color: #426b7f;
+  color: white;
+}
+
+.cmu_tags a:hover::after {
+   border-left-color: #426b7f; 
+}
+
+.resp-container {
+    position: relative;
+    overflow: hidden;
+    padding-top: 56.25%;
+	min-height: 500px;
+}
+
+.resp-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+.gads-postpage{
+	margin-top:30px;
+	margin-bottom:30px;
+}
+.adsbygoogle{
+	background-color:#fff!important;
+}
+#nextPrvNavigation
+{    position: fixed;
+    height: 50px;
+    display: block;
+    width: 100%;
+    bottom: 0;
+    background: #eee;
+    left: 0;}
+
+#allTags{
+ 	display:flex;
+	flex-flow: wrap;
+	    justify-content: space-between;
+}
+#allTags div{ width:100%; max-width:250px; margin-bottom:20px }
+#allTags div a{
+	display:block;
+}
+#allTags div a:hover{
+	text-decoration:underline;
+}
+#allTags div h5{
+	margin:0;
+	font-weight:bold;
+}
+.single .hero {
+    padding-bottom: 8vh;
+}
+.stickyNavigation{
+	    position: fixed;
+    bottom: 0;
+    display: flex;
+    left: 0;
+    align-items: center;
+    right: 0;
+    justify-content: center;
+	opacity:0
+}
+.stickyNavigation:hover{
+	opacity:1
+}
+.stickyNavigation ul{
+	list-style: none;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+	    padding: 0 30px;
+	max-width:600px;
+		margin:0;
+		
+}
+.stickyNavigation li a,
+.stickyNavigation li a:hover,
+.stickyNavigation li.active a,
+.stickyNavigation li.disabled {
+    color: #fff;
+    text-decoration:none;
+}
+ 
+.stickyNavigation li {
+    display: inline;
+}
+ 
+.stickyNavigation li a,
+.stickyNavigation li a:hover,
+.stickyNavigation li.active a,
+.stickyNavigation li.disabled {
+    background-color: #6FB7E9;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 12px;
+    padding: 0.75rem;
+}
+ 
+.stickyNavigation li a:hover,
+.stickyNavigation li.active a { background-color: #3C8DC5;
+}
+.alm-layouts .alm-listing .alm-layout.ad-widget
+{}
+.alm-reveal.alm-seo div:nth-child(3n+3){
+	margin-right:0!important;
+}

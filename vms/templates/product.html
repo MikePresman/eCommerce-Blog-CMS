@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{%block content%}
+ <center>
+        <font color = red>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {%endif%}
+        {%endwith%}
+
+        
+    </font>
+    </center>
+        <!-- main -->
+        <div class="page-container scene-main scene-main--fade_In">
+            <!-- Page Title -->
+            <div class="page_main_title mb-70px">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 text-center text-lg-left">
+                            <h4>Store</h4>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="breadcrumbs mt-10px mt-lg-0 text-center text-lg-right">
+                                <span class="first-item">
+                                    <a href="#">Home</a>
+                                </span>
+                                <span class="separator">/</span>
+                                <span>
+                                    <a href="#">Shop </a>
+                                </span>
+                                <span class="separator">/</span>
+                                <span class="last-item">{{product.product_title}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="container single-product-content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="single-product-images popup_gallery">
+                            <img src="{{product.image_associated}}" alt="Product Image" width="800" height="893">
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="single-product-des">
+                            <h2 class="product-title">{{product.concert_title}}</h2>
+                            <div class="single-product-price">Regular Admission Price ${{product.price}}</div>
+                            
+                            <div class="single-product-deta">
+                                <p>
+                                    {{product.description}}
+                                </p>
+
+                                {%if seats_available|length%}
+
+                                <form name = "" method = "POST">
+                                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+                                    <div class="add-to-cart-warp">
+                                        <div class="quantity d-flex mr-3">
+                                            <input type="number" step="1" min="1" name="quantity" value="1" title="Qty" class="input-text qty text total-quantity" size="2">
+                                        </div>    
+
+                                        <div class = "col-md-8">
+
+                                            
+                                                <select name = "ticket-info">    
+                                                {% for key, value in seats_available.items() %}
+                                                        {%for val in value%}
+                                                            <option value="{{val}}">Row: {{val[0]}} Seat: {{val[1]}}</option>
+                                                        {%endfor%}
+                                                {%endfor%}
+                                        
+                                    </select>       
+
+                                </div>
+                            </div>
+
+                             <div class="container">
+                                <div class = "row">
+                                    <div col = "col-lg">
+                                    <button class="btn btn-primary" name = "product" value = {{product}}>Add to Cart</button> 
+
+                                    </div>
+                                </div>   
+                            </div>
+                                    
+                            <div class = "container">
+                                <div class = "row">
+                                    <div col = "col-lg">
+                                    Is this seat for a Senior? Your seat is ${{product.senior_price}}<input type="checkbox" name="senior-price">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                           <div class = "container">
+                                <div class = "row">
+                                    <div col = "col-lg">
+                                    Is this seat for a Child? Your seat is ${{product.children_price}}<input type="checkbox" name="children-price">
+                                    </div>
+                                </div>
+                            </div>
+
+                            </form>
+
+                             
+
+                                {%if session['cart']%}
+                                    <a class="btn btn-secondary" href = "{{url_for('checkout')}}">Checkout</a>
+                                {%endif%}
+                                
+                                <div class="clearfix"></div>
+                            </div>
+                                
+
+                                
+                                <ul class="single-product-meta">
+                                    <li>
+                                        <span class="meta-name">Location:</span>{{product.location}}</li>
+                                     <li>
+
+                                        {% if product.time_of_event is none%}
+                                        <span class="meta-name">Date Of Event:</span>{{product.date_of_event}}</li>
+                                        {%else%}
+                                        <span class="meta-name">Date Of Event:</span>{{product.date_of_event}} - {{product.time_of_event}}</li> 
+                                        {%endif%}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    {%else%}    
+                                            <p><font color = "Blue">Tickets Sold Out !</font></p>
+                                            {%endif%}
+               
+                </div>
+        </div>
+    {% endblock %}

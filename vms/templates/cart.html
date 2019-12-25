@@ -1,0 +1,70 @@
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+{% extends 'base.html' %}
+{% block content %}
+</br>
+
+<div class="container">
+	 <div class="container">
+      <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="http://simpleicon.com/wp-content/uploads/credit-card-plus.svg" alt="" width="72" height="72">
+        <h2>Review and Finalize Checkout</h2>
+      </div>
+	<table id="cart" class="table table-hover table-condensed">
+    				<thead>
+						<tr>
+							<th style="width:50%">Product</th>
+							<th style="width:10%">Price</th>
+							
+							<th style="width:22%" class="text-center">Seat and Row</th>
+							<th style="width:10%"></th>
+						</tr>
+					</thead>
+					<tbody>
+						{%for each in cart_list%}
+						<tr>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-2 hidden-xs"><img d src={{each[1]}} alt="..." class="img-responsive"/></div>
+									<div class="col-sm-10">
+										<h4 class="nomargin"></h4>
+										<p maxlength = "10"><b>{{each[2]}}</b> - {{each[8]}} - {{each[9]}}</p>
+									</div>
+								</div>
+							</td>							
+							<td data-th="Price">${{each[3]}}</td>
+							<td data-th="Seat and Row" class="text-center">Row: {{each[6]}} Seat: {{each[7]}}</td>
+							<td data-th="space"></td>
+
+						<form name = "" method = "POST">
+							<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+							<td class="actions" data-th="">
+								<button class="btn btn-danger btn-sm" name = "delete-item" value = {{each[0]}}:{{each[6]}}:{{each[7]}}><i class="glyphicon glyphicon-trash"></i></button>				
+							</td>
+						</form>
+						</tr>
+						{% endfor %}
+					</tbody>
+					<tfoot>
+						<tr class="visible-xs">
+							<td class="text-center"><strong>{{sum}}</strong></td>
+						</tr>
+						<tr>
+							<td><a href="{{url_for('store')}}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+							<td colspan="2" class="hidden-xs"></td>
+							<td class="hidden-xs text-center"><strong>Total: ${{sum}}</strong></td>
+							<td><a href={{url_for('checkout')}}  class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+						</tr>
+					</tfoot>
+				</table>			
+			</div>
+
+
+
+{% endblock %}

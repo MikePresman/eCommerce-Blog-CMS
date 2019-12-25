@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<center>
+        <font color = red>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {%endif%}
+        {%endwith%}
+
+        
+    </font>
+<!DOCTYPE html>
+<html>
+        <head>
+                <meta charset="utf-8">
+                <title>CKEditor</title>
+                <script src="https://cdn.ckeditor.com/4.11.2/full/ckeditor.js"></script>
+        </head>
+
+        <body>
+                <form method = "POST" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <textarea name="content"></textarea>  
+                    <input type="text" name="title" placeholder="Article Title" required="required" />
+                    <input type="text" name="description" placeholder="Article Description" required="required" />
+                                
+                
+                <!--IMAGE UPLOAD -->
+                    <span class="btn btn-default btn-file">
+                        Browse <input type="file" name="image">
+                    </span>
+
+
+            
+
+                    <input type="text" name="author" placeholder="Author Name" required="required" />
+                    <button class = "btn-danger" value = "" name = "content">Submit Blog</button>
+
+                    <script>
+                            CKEDITOR.replace( 'content' );
+                    </script>
+                 </form>
+        </body>
+</html>
+
+{% endblock %}

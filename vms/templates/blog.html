@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- main -->
+        <div class="page-container scene-main scene-main--fade_In">
+            <!-- Page Title -->
+            <div class="page_main_title mb-80px">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 text-center text-lg-left">
+                            <h4>Blog</h4>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="breadcrumbs mt-10px mt-lg-0 text-center text-lg-right">
+                                <span class="first-item">
+                                    <a href="#">Home</a>
+                                </span>
+                                <span class="separator">/</span>
+                                <span>
+                                    <a href="#">Blog </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Blogs -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="blog_posts stander_blog one_colo_stander_blog">
+
+                            {% for blog in blogs.items %}
+                            <article>
+                                <div class="post_img">
+                                    <center>
+                                        <h3 class="post_title">
+                                            <a href="/blog-post/{{blog.id}}">{{blog.title}}
+                                        </h3>
+                                        <img src="{{blog.image_link}}" alt="Card image cap">
+                                        
+                                        <div class="post_meta_top">
+                                           
+                                            <span class="post_meta_date">{{blog.date}}</span>
+                                        </div>
+                                        <div class="post_content">
+                                            <p>
+                                                {{blog.description}}
+                                            </p>
+                                        </div>
+                                    </center>
+                                <div class="post_meta_bottom">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <a class="post_read_more d-block" href="/blog-post/{{blog.id}}">Read More
+                                                <i class="far fa-long-arrow-right" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                </a>
+
+                                {% if current_user.is_authenticated and user_authority_level > 0 %}
+                                 <form method = "POST">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                                    <td><button class = "btn-danger btn-sm" value = "{{blog.id}}" name = "delete-blog">Delete</button></td>
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" name="delete" value="delete"> Delete this<br><br>
+                                </form> 
+                                {% endif %}
+
+                            </article>
+                            {% endfor %}
+                          
+
+
+                        </div>
+                    <div class="d-flex justify-content-between align-items-center mt-60px">
+                    <a class=" mr-2" href="{{url_for('blog', page = previous_page)}}">
+                        <i class="fas fa-angle-left fa-3x mr-2" aria-hidden="true"></i>
+                    </a>
+                    <a class="" href="#">
+                        <i class="fas fa-th-large fa-2x" aria-hidden="true"></i>
+                    </a>
+
+                    
+                    <a class=" ml-2" href="{{url_for('blog', page = next_page)}}">
+                        <i class="fas fa-angle-right fa-3x ml-2" aria-hidden="true"></i>
+                    </a>
+                    
+                </div>
+                    </div>
+                </div>
+
+            </div>
+          
+        </div>
+        <!-- End main -->
+    </div>
+{% endblock %}

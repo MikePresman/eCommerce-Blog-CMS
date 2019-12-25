@@ -1,0 +1,20 @@
+#tick{
+	width: 100px;
+	height: 100px;
+}
+
+#tick_circle{
+	transform: rotate(-90deg);
+	transform-origin: center;
+}
+
+
+#cross{
+	width: 100px;
+	height: 100px;
+}
+
+#cross_circle{
+	transform: rotate(-90deg);
+	transform-origin: center;
+}

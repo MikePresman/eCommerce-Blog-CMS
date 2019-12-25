@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<body>
+    <center>
+        <font color = red>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {%endif%}
+        {%endwith%}
+
+        
+    </font>
+    </center>
+    <div id="main-content">
+     
+        <!-- main -->
+        <div class="page-container scene-main scene-main--fade_In">
+            <!-- Page Loader -->
+            <div class="page_loading">
+                <div class="spinner"></div>
+            </div>
+
+            <div class="fluid-container bg-color-creamy">
+                <div class="row no-gutters height-vh60">
+                    <div class="col-lg-5">
+                        <div class="mt-80px mb-80px px-60px">
+                            <h2 class="mb-20px">{{top.title_associated}}</h2>
+                            <p>
+                                {{top.text_associated}}</p>
+                            <blockquote>
+                               -Veronika Presman
+                            </blockquote>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 offset-lg-1 bg-img-41 height-vh60">
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Recent projects -->
+            <div class="fluid-container px-20px px-md-60px mt-70px mb-80px">
+                <div class="mb-60px mb-md-40px">
+                </div>
+                <div id="project_carousel" class="owl-carousel project-owl-carousel">
+
+<!--LEFT-->
+
+                    <div class="owl-carousel-item">
+                        <article>
+
+                            <div class="post-img">
+                                <img src="{{left.picture_associated}}" alt="">
+                            </div>
+
+
+                            <h5 class="mb-15px">
+                                <a href="portfolio-single-small-carousel.html">{{left.title_associated}}</a>
+                            </h5>
+
+                            <div class="post_content mb-15px">
+                               {{left.text_associated}}
+                            </div>
+                         
+                        </article>
+                    </div>
+
+
+
+<!--MIDDLE-->
+
+
+                    <div class="owl-carousel-item">
+                        <article>
+                            <div class="post-img">
+                                <img src="{{middle.picture_associated}}" alt="">
+                            </div>
+                            <h5 class="mb-15px">
+                                <a href="portfolio-single-small-carousel.html">{{middle.title_associated}}</a>
+                            </h5>
+                            <div class="post_content mb-15px">
+                               {{middle.text_associated}}
+                            </div>
+                        </article>
+                    </div>
+<!--RIGHT-->
+
+                    <div class="owl-carousel-item">
+                        <article>
+                            <div class="post-img">
+                                <img src="{{right.picture_associated}}" alt="">
+                            </div>
+                            <h5 class="mb-15px">
+                                <a href="portfolio-single-small-carousel.html">{{right.title_associated}}</a>
+                            </h5>
+                            <div class="post_content mb-15px">
+                               {{right.text_associated}}
+                            </div>
+                        </article>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+            <!-- Contact -->
+            <div class="fluid-contianer bg-color-creamy">
+                <div class="row no-gutters height-vh60">
+                    <div class="col-lg-5">
+                        <div class="mt-80px mb-100px px-60px">
+                            <h3 class="mb_40">Contact Us</h3>
+                            <p>
+                                Canada: Aurora, ON
+                                <br>
+                            </p>
+
+                            <p>E: vamp@rogers.com
+                                <br>+1 (647) 882 5062</p>
+                            <div>
+                                <ul class="list-inline m-0">
+                                    <li class="list-inline-item">
+                                        <a href="mailto:vamp@rogers.com">
+                                            <i class="far fa-envelope"></i>
+                                        </a>
+                                    </li>
+                             
+                                    <li class="list-inline-item">
+                                        <a href="https://www.facebook.com/groups/1483965271830245/" target="_blank">
+                                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                 
+                                </ul>
+                            </div>
+                            
+                            
+                          
+                        </div>
+                    </div>
+                    <div class="col-lg-6 offset-lg-1">
+                       <!--<div class="mapouter"><div class="gmap_canvas"><iframe width="800" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=13345%20Yonge%20St%2C%20Richmond%20Hill%2C%20ON%20L4E%203L3%2C%20Canada&t=&z=16&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.pureblack.de/internetagentur/"></a></div><style>.mapouter{text-align:right;height:500px;width:800px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:900px;}</style></<div>-->
+                </div>
+            </div>
+        </div>  
+    </body>
+</html>
+
+
+<style>
+    .bg-img-41 {
+    background: url("{{top.picture_associated}}");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+</style>
+
+{% endblock %}
+
+

@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block content %}
+ <!-- main -->
+
+<div class="page-container scene-main scene-main--fade_In">
+        <!-- Blog post -->
+		 <article>
+            <div class="post_img">
+                <center>
+                  
+                    <img src="{{blog_data.image_link}}" alt="Card image cap">
+                    </center>
+                </div>
+            </article>
+
+
+            <div class="container mb-65px">
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-1 mt-10px">
+                        <div class="blog_posts stander_blog_single_post">
+                            <article>
+                                <h3 class="post_title">
+                                    <a href="blog-single-post.html">{{blog_data.title}}</a>
+                                </h3>
+                                <div class="post_meta_top">
+                                    <span class="post_meta_category">
+                                        <a href="blog-single-post.html">{{blog_data.title}}</a>
+                                    </span>
+                                    <span class="post_meta_date">{{blog_data.date}}</span>
+                                </div>
+                                <div class="post_content">
+                                   {{ blog_data.content|safe}}
+                                </div>
+                               
+                                <div class="separator-line"></div>
+                            </article>
+                            <!--COMMENTS GO HERE -->
+                            <div class="blog-post-comments">
+                                <div class="comments-area">
+                                    <h5 class="comment-title">{{num_of_comments}} Comments</h5>
+
+                            
+                                {%if comments is defined%}
+                                    {%for comment in comments%}
+                                        <ol class="comment-list">
+                                            <li class="comment" id="comment-1">
+                                                <article id="div-comment-1" class="comment-body">
+                                                    <header class="comment-meta">
+                                                        
+                                                        <img class="avatar" src="https://cdn.pixabay.com/photo/2016/03/26/01/17/treble-clef-1279909_960_720.png" alt="img" width="75" height="75">
+
+
+                                                        <cite>
+                                                            <a href="#">{{comment.first_name_of_commenter}} {{comment.last_name_of_commenter}}</a>
+                                                        </cite>
+                                                        <a href="#">
+                                                            <span>{{comment.date_posted[:-10]}} </span>
+                                                        </a>
+                                                        <!--
+                                                        <a class="comment-reply-link" href="#" aria-label="Reply to A WordPress Commenter">Reply</a>-->
+                                                    </header>
+                                                    <section class="comment-content comment">
+                                                        <p>{{comment.comment}}</p>
+
+                                <form method = "POST" class="form-fields-bg-transparent">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    <td><button class = "btn-danger btn-sm" value = "{{comment.id}}" name = "delete">Delete</button></td></form>
+                                                    </section>
+                                            </article>
+                                            </li>
+                                        </ol>
+                                    {%endfor%}
+                                {%endif%}
+                            
+                                </div>
+                                <form method = "POST" class="form-fields-bg-transparent">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                        {%if user_authority_level > 0 %}
+                                 <h5 class="comment-reply-title mb-4">Leave a comment</h5>
+
+                                
+                                    <div class="form-row  mb-15px">
+                                        <div class="form-group col-md-12">
+                                            <textarea rows="8" name="comment" class="form-control validate-required" placeholder="Your Comment" ></textarea>
+                                        </div>
+                                    </div>
+                                    <!--
+                                    <div class="row mb-15px">
+                                        <div class="form-group col-md-4">
+                                            <input id="name" type="text" class="form-control validate-required" placeholder="Your name">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <input id="email" type="email" name="Email" class="form-control validate-required validate-email" placeholder="Your email">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <input type="text" id="website" name="website" class="form-control" placeholder="Your website">
+                                        </div>
+                                    </div>
+                                    -->
+                                    <div class="form-group row">
+                                        <div class="col-sm-12 col-xs-12">
+                                            <button type="submit" class="btn btn-dark rounded-0">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            {%else%}
+                            <center><h5 class="comment-title">Log in to Post a Comment !</h5></center>
+
+                                {%endif%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- footer  -->
+        </div>
+        <!-- End main -->
+        
+
+        {% endblock %}

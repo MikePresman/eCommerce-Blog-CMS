@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <center>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {%endif%}
+        {%endwith%}
+        <h1>Ticket Generator</h1>
+        <form action="" method="post">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <input type = "text" name = "first_name" placeholder="First Name">
+            <input type = "text" name = "last_name" placeholder="Last Name">
+            
+        <div class = "col-md-4">
+            <select name = "ticket-info">    
+                {% for key, value in concert_details.items() %}
+                    {%for val in value%}
+                    <option value="{{val}}">{{key}}, Row: {{val[0]}} Seat: {{val[1]}}</option>
+                    {%endfor%}    
+                {%endfor%}
+            </select>       
+        </div>
+        <button class = "btn-Primary btn-sm" value = "Add" name = "ticket-queue">Add To Queue</button></br>
+        <!-- here is the ticket queue -->
+        
+
+        {% if queue_info is defined and queue_info|length %}
+            <table class="table" style = "max-width: 75vw;">
+              <thead>
+                <tr>
+                  <th scope="col">First Name</th>
+                  <th scope="col">Last Name</th>
+                  <th scope="col">Concert Name</th>
+                  <th scope="col">Concert Date</th>
+                  <th scope="col">Row</th>
+                  <th scope="col">Seat</th>
+                  <th scope="col">Concert Location</th>  
+                  <th scope="col">Remove From Queue</th>  
+                </tr>
+              </thead>
+              <tbody>
+
+            {% for each in queue_info %}  
+                <tr>
+                  <td>{{each[0]}}</td>
+                  <td>{{each[1]}}</td>
+                  <td>{{each[2]}}</td>
+                  <td>{{each[3]}}</td>
+                  <td>{{each[4]}}</td>
+                  <td>{{each[5]}}</td>
+                  <td>{{each[6]}}</td>
+                  <td><button class = "btn-danger btn-sm" value = "{{each[9]}}:{{each[4]}}:{{each[5]}}" name = "queue-delete-individual">Delete</button></td>
+                </tr>
+        {%endfor%}
+
+
+    </tbody>
+ </table>            
+
+        {%endif%}
+
+
+        <input type = "text" name = "email" placeholder="Email Address">
+        <button class = "btn-Primary btn-sm" value = "Submit" name = "submit-queue">Submit</button>
+        </br>
+        </br>
+
+    {% if queue_info is defined and queue_info|length %}        
+        <button class = "btn-Danger btn-sm" value = "Clear" name = "clear-queue">Clear Queue</button>
+    {%endif%}
+
+    </form></br>
+        </form>
+    </center>
+{% endblock %}
+

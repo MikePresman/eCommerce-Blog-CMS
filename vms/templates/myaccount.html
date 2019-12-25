@@ -1,0 +1,53 @@
+{%extends 'base.html'%}
+{%block content%}
+<center>
+    <font color = "red">
+   {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {%endif%}
+        {%endwith%}
+    </font>
+</center>
+<div class="container">
+	<div id="blog" class="row"> 
+        <div class="col-sm-2 paddingTop20">
+            <nav class="nav-sidebar">
+                <ul class="nav">
+
+                    <li class="active"><a href="{{url_for('index')}}"><span class="glyphicon glyphicon-star"></span> Home</a></li>
+                    <li><a href="{{url_for('change_password')}}">Change Password</a></li>
+                    <li><a href="{{url_for('change_email')}}">Change Email</a></li>
+                    <li><a href="{{url_for('my_tickets')}}">My Tickets</a></li>
+
+                    <li><a href="{{url_for('logout')}}">   - Sign Out</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="col-md-10 blogShort">
+             <h3>Hello {{user}}</h3>
+              <img src="https://i.pinimg.com/originals/2b/e5/49/2be5499625f32c1af7cd87645eb171b7.png" height = "100" width = "100" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
+             {%if verified == 0%}             
+           
+             <h2>Click Below to Verify your Email</h2>
+      
+             <form name = "" method = "POST">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                <button type="submit" class="btn btn-primary" name = "email" value = "">Send Verification to my Email</button>
+            </form>
+             {%endif%}
+            </br></br></br>
+          </div>
+        </div>
+      {%endblock%}
+
+           
+
+       
+
+<!---------------------------->

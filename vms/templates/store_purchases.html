@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <center>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <font color = "red">
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {%endif%}
+        {%endwith%}
+      </font>
+    </center>
+<center>
+ <table class="table" style = "max-width: 90vw;">
+
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Concert</th>
+              <th scope="col">Active Level</th>
+              <th scope="col">Change Level</th>
+              
+              <th scope="col">Date</th>
+              <th scope="col">Price</th>
+              <th scope="col">Senior Price</th>
+              <th scope="col">Children Price</th>
+              
+              <th scope="col">Location</th>
+              <th scope="col">Seat Details</th>
+              <th scope="col">Empty Seats</th>
+              <th scope="col">Receipts for Event</th>
+              
+              
+              <th scope="col">Update</th>
+              <th scope="col">Delete Event</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          {% for concert in concerts %}  
+            <tr>
+              <th scope="row">{{concert.id}}</th>
+              <td>{{concert.concert_title}}</td>
+              <td>{{concert.active}}</td>
+
+              <form name = "" method = "POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+              <td class = "select"> 
+                <select name = "update-check">    
+                  <option value="0:{{concert.id}}">0</option>    
+                  <option value="1:{{concert.id}}">1</option>
+                </select>
+           
+              </td>
+            
+              <td>{{concert.date_of_event}}</td>
+              <td>{{concert.price}}</td>
+              <td>{{concert.senior_price}}</td>
+              <td>{{concert.children_price}}</td>
+              
+              <td>{{concert.location}}</td>    
+              <td><a href = "{{url_for('concert_details', concert_details_id = concert.id)}}">Concert Details</a></td>
+              <td><a href = "{{url_for('seats_available', concert_id = concert.id)}}">Empty Seats</a></td>    
+              <td><a href = "{{url_for('receipts_for_event', concert_id = concert.id)}}">Receipts</a></td>
+
+              
+                   <td>
+                  <button class = "btn-primary btn-sm" size ="2" name = "update-submit">
+                      Update {{concert.id}}
+                  </button>
+                </td>
+
+                <td>
+                   <button class = "btn-danger btn-sm" size ="2" name = "delete-submit" onclick="return confirm('WARNING : DANGER Are you sure you would like to delete this event and all of its associated ticket sales?');">
+                      Delete
+                  </button>
+                  <input type="checkbox" name="delete-confirm" value="delete">
+                </td>
+
+
+                  </form>
+                </td>
+          </tr>
+          {%endfor%}
+      </tbody>
+  </table>
+
+  <button class = "btn-primary btn-sm" size ="2" name = "update-submit">
+    <a href = "{{url_for('generate_custom_ticket')}}"><font color = "white">Generate Custom Ticket</font></a>
+  </button>
+  
+</center>
+
+
+
+{% endblock %}

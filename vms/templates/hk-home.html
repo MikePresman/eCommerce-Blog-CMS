@@ -1,0 +1,135 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link type="text/css" rel="stylesheet" href="../static/css/hk-home.css"/>
+
+<div class="container">
+	<div id="blog" class="row"> 
+        <div class="col-sm-2 paddingTop20">
+            <nav class="nav-sidebar">
+                <ul class="nav">
+                    <li class="active"><a href="{{url_for('index')}}"><span class="glyphicon glyphicon-star"></span> Home</a></li>
+                    <li><a href="{{url_for('blog_editor')}}">Create Blog</a></li>
+                    <li><a href="{{url_for('gallery_editor', page = 1)}}">Add Photos To Gallery</a></li>            
+                    <li><a href="{{url_for('store_editor')}}">Add Ticket Sale</a></li>   
+                    <li><a href="{{url_for('store_purchases')}}">Store Management</a></li>   
+                    <li><a href="{{url_for('index_editor')}}">Change Index Details</a></li>            
+
+
+                    <li class="nav-divider"></li>
+                    <li><a href="{{url_for('logout')}}"><i class="glyphicon glyphicon-off"></i> Sign Out</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="col-md-10 blogShort">
+             <h3>Housekeeping - Write Blogs, Add Photos, and Home of the Webpage</h3>
+             <img src="https://i.pinimg.com/originals/2b/e5/49/2be5499625f32c1af7cd87645eb171b7.png" height = "100" width = "100" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
+            </br></br></br>
+          </div>
+        </div>
+      
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Username</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Authority</th>
+              <th scope="col">Email Verification</th>
+
+              <th scope="col">Set User Rank </th>
+              <th scope="col">Update User</th>
+              <th scope="col">Delete User</th>
+              <th>Confirm Deletion</th>
+              
+              <th scope="col">Override Account</th>
+
+
+            </tr>
+          </thead>
+          <tbody>
+
+            {% for user in users %}
+            <tr>
+              <th scope="row">{{user.id}}</th>
+              <td><a href="{{url_for('user_purchases', user_id = user.id)}}">{{user.username}}</a></td>
+              <td>{{user.first_name}}</td>
+              <td>{{user.last_name}}</td>
+
+              <td>{{user.email}}</td>
+              <td>{{user.authority}}</td>
+
+               {% if user.email_verified %}
+              <td>Completed</td>
+              {%else%}
+              <td>Not Completed</td>
+              {%endif%}
+              
+           
+<!--FORM WITH DROPDOWN BOX AND SUBMIT-->
+            <form name = "" method = "POST">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+              <td class = "select"> 
+                <select name = "update-check">    
+                  <option value="0:{{user.id}}">0</option>    
+                  <option value="1:{{user.id}}">1</option>
+                </select>
+                <td>
+                  <button class = "btn-primary" name = "update-submit">
+                      Update {{user.username}}
+                  </button>
+                </td>
+              </td>
+            </form>
+
+
+
+             <form method = "POST">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <td><button class = "btn-danger btn-sm" value = "{{user.id}}" name = "delete">Delete</button></td>
+                    <td><input type="checkbox" name="confirm-delete">Confirm</td>
+                    <td><button class = "btn-danger btn-sm" value = "{{user.id}}" name = "override">Override</button></td>
+              </form>
+            {% endfor %}
+          </tbody>
+        </table>
+
+<!---------------------------->
+
+</br></br>
+        Failed Logins
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Attempted Username</th>
+              <th scope="col">IP_Address</th>
+              <th scope="col">Date</th>
+              <th scope="col">Delete User</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for attempt in failed_attempts %}
+            <tr>
+              <th scope="row">{{attempt.id}}</th>
+              <td>{{attempt.attempted_username}}</td>
+              <td>{{attempt.ip_address}}</td>
+              <td>{{attempt.date}}</td>
+            
+              <form method = "POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <td><button class = "btn-danger" value = "{{attempt.id}}" name = "delete-attempt">Delete {{attempt.id}}</button></td>
+              </form>
+
+            {% endfor %}
+            
+          
+          </tbody>
+        </table>
+    </div>
+</div>

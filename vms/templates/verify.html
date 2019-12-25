@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+<head><title>Verification</title>
+	<link href="/static/css/verify.css" rel="stylesheet">
+	<script type="text/javascript" src="/static/js/verify.js"></script>
+</head>
+<div id="content">
+
+<center>
+
+<!--Cross-->
+{%if verified == False%}
+<span><svg id="cross" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+<circle id="cross_circle" fill="none" stroke="rgb(179, 60, 60)" stroke-width="30" stroke-miterlimit="10" cx="256" cy="256" r="225"  fill="transparent" stroke-linecap="round"stroke-dashoffset="2000" stroke-dasharray="2000"/>
+<g>
+
+		<rect id="cross_p1" x="239.397" y="67.518" rx="17" ry="17"  transform="matrix(0.7071 0.7071 -0.7071 0.7071 255.9995 -106.0389)" width="33.205" height="0" fill="rgb(179, 60, 60)" />
+</g>
+<g>
+
+		<rect id="cross_p2" x="239.397" y="67.519" rx="17" ry="17"  transform="matrix(0.7071 -0.7071 0.7071 0.7071 -106.039 256.0001)" width="33.205" height="0" fill="rgb(179, 60, 60)" />
+</g>
+</svg>
+</span>
+{%else%}
+<!--Checkmark-->
+<span>
+  <svg id="tick" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+<g>
+	<circle id="tick_circle" cx="256" cy="256" r="240" stroke="rgb(75, 212, 146)" stroke-width="30" fill="transparent" stroke-linecap="round"stroke-dashoffset="2000" stroke-dasharray="2000" />
+</g>
+<rect id="tick_p1" rx="17" ry="17" x="180.448" y="244.566" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -166.3342 225.5657)" width="30" height="0" fill="rgb(75, 212, 146)" />
+<rect id="tick_p2" rx="17" ry="17" x="308.664" y="141" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 350.3278 686.445)" width="30" height="0" fill="rgb(75, 212, 146)" />
+</svg>
+</span>
+</br>
+<b>Ticket Holder:</b> {{first_name}}
+{{last_name}}</br>
+<b>Concert:</b> {{concert_title}}
+<b>Ticket Type:</b>{{ticket_type}}
+{%endif%}
+</center>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+</html>
+<style>
+	#tick{
+	width: 100px;
+	height: 100px;
+}
+
+#tick_circle{
+	transform: rotate(-90deg);
+	transform-origin: center;
+}
+
+
+#cross{
+	width: 100px;
+	height: 100px;
+}
+
+#cross_circle{
+	transform: rotate(-90deg);
+	transform-origin: center;
+}
+</style>
+
+<script>$(document).ready(function(){
+    cross_animationIn();
+  
+    tick_animationIn();
+  
+  
+});
+
+function cross_animationIn(){
+	$("#cross_circle")
+	    .delay(5)
+		  .velocity({strokeWidth: 30},200, "easeOutExpo")
+			.velocity({strokeDasharray:1600,strokeDashoffset: 0},700, "easeInOutSine")
+      //.delay(1500)
+      //.velocity("reverse"); //Use this to run the animation in reverse essentially 'animating out'.
+
+	$("#cross_p1")
+	    .delay(5)
+		  .velocity({ height: 376.964, width: 33.205 },300, "easeOutQuart")
+      //.delay(1500)
+      //.velocity("reverse");
+
+			$("#cross_p2")
+					.delay(5)
+					.velocity({ height: 376.964, width: 33.205 },500, "easeOutQuart" )
+      
+          //.delay(1500)
+          //.velocity("reverse");
+}
+
+function tick_animationIn(){
+	$("#tick_circle")
+	    .delay(0)
+		  .velocity({strokeWidth: 30},200, "easeOutExpo")
+			.velocity({strokeDasharray:1600,strokeDashoffset: 0},700, "easeInOutSine");
+
+	$("#tick_p1")
+	    .delay(0)
+		  .velocity({ height: 137.999, width: 30 },300, "easeInExpo");
+
+			$("#tick_p2")
+					.delay(0)
+					.velocity({ height: 259.334, width: 30 },500, "easeOutExpo" );
+}
+</script>

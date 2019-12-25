@@ -1,0 +1,209 @@
+{%extends 'base.html'%}
+{%block content%}
+
+
+	<div class="col-md-8 order-md-1">
+          <h4 class="mb-3">Top Index Info</h4>
+           <form action = "" name ="" method = "post" enctype="multipart/form-data">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="firstName">Title</label>
+
+                <input type="text" class="form-control" id = "firstname" name="index-title" value={{top.title_associated}}>
+            
+              </div>
+
+
+
+    
+
+       
+              <div class="col-md-6 mb-3">
+                <label for="lastName">Text Associated</label>
+                <textarea rows ="4" cols="50"  name="index-text">{{top.text_associated}}</textarea>
+            
+              </div>
+            </div>
+            
+          
+
+
+
+
+<!--IMAGE UPLOAD--><center>
+                        <div class ="col-6">
+                                    <span class="btn btn-default btn-file">
+                                        Browse <input type="file" name="image">
+                                    </span>
+
+                                    <input type="submit" value="Index Upload:Top" name = "call_from" class="btn btn-primary">
+                                </form>
+                            </div>
+
+
+                        </center>
+                    </div>
+                  </center>
+
+
+
+
+
+
+
+
+<hr/><!-- Hoziontal Line-->
+
+
+	<div class="col-md-8 order-md-1">
+          <h4 class="mb-3">Left Index Info</h4>
+           <form action = "" name ="" method = "post" enctype="multipart/form-data">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="firstName">Title</label>
+                <input type="text" class="form-control" name="index-title" value="{{left.title_associated}}">
+            
+              </div>
+            
+
+
+              <div class="col-md-6 mb-3">
+                <label for="lastName">Text Associated</label>
+                <textarea rows ="4" cols="50"  name="index-text">{{left.text_associated}}</textarea>
+            
+              </div>
+            </div>
+            
+
+
+          <!--IMAGE UPLOAD-->
+          <center>
+                        <div class ="col-6">
+                              
+                                
+                                
+                                    <span class="btn btn-default btn-file">
+                                        Browse <input type="file" name="image">
+                                    </span>
+
+                                    <input type="submit" value="Index Upload:Left" name = "call_from" class="btn btn-primary">
+                                </form>
+                            </div>
+
+
+                        
+                    </div>
+                    </center>
+
+<hr/><!-- Hoziontal Line-->
+
+	<div class="col-md-8 order-md-1">
+          <h4 class="mb-3">Middle Index Info</h4>
+           <form action = "" name ="" method = "post" enctype="multipart/form-data">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="firstName">Title</label>
+                <input type="text" class="form-control" name="index-title" value="{{middle.title_associated}}">
+            
+              </div>
+
+
+
+    
+
+       
+              <div class="col-md-6 mb-3">
+                <label for="lastName">Text Associated</label>
+                <textarea rows ="4" cols="50"  name="index-text">{{middle.text_associated}}</textarea>
+            
+              </div>
+            </div>
+            
+
+       
+            <!--IMAGE UPLOAD-->
+            <center>
+                        <div class ="col-6">
+                              
+                                
+                                
+                                    <span class="btn btn-default btn-file">
+                                        Browse <input type="file" name="image">
+                                    </span>
+
+                                    <input type="submit" value="Index Upload:Middle" name="call_from" class="btn btn-primary">
+                                </form>
+                            </div>
+
+
+                        </center>
+                    </div>
+                  </center>
+
+
+<hr/><!-- Hoziontal Line-->
+
+
+	<div class="col-md-8 order-md-1">
+          <h4 class="mb-3">Right Index Info</h4>
+           <form action = "" name ="" method = "post" enctype="multipart/form-data">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="firstName">Title</label>
+                <input type="text" class="form-control" name="index-title" value="{{right.title_associated}}">
+            
+              </div>
+
+
+    
+
+       
+              <div class="col-md-6 mb-3">
+                <label for="lastName">Text Associated</label>
+                <textarea rows ="4" cols="50"  name="index-text">{{right.text_associated}}</textarea>
+            
+              </div>
+            </div>
+
+        
+
+
+            <!--IMAGE UPLOAD-->
+            <center>
+                        <div class ="col-6">
+                              
+                                
+                                
+                                    <span class="btn btn-default btn-file">
+                                        Browse <input type="file" name="image">
+                                    </span>
+
+                                    <input type="submit" value="Index Upload:Right" name ="call_from" class="btn btn-primary">
+                                </form>
+                            </div>
+
+
+                    </div>
+                    
+                        </center>
+
+
+
+<style>
+	hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+</style>
+
+
+
+{%endblock%}
