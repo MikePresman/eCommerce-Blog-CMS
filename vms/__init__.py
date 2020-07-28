@@ -25,7 +25,7 @@ csrf = CSRFProtect(app)
 celery = Celery('app', backend='rpc://', broker='pyamqp://guest@localhost//')
 
 
-
+#Username : Admin, Password: 1234
 
 #is the stuff below necessary?
 @login.user_loader
