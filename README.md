@@ -24,3 +24,9 @@ Admin All-Products For Sale Page
 
 Admin Product-Specific Details Page (Who has bought what ticket etc.)
 ![](https://i.imgur.com/dQd8zkT.png)
+
+Receipt Email
+![](https://i.imgur.com/shJssHC.png)
+
+Ticket PDF w/ QR Code for Door Entry
+![](https://i.imgur.com/yQX9laM.png)

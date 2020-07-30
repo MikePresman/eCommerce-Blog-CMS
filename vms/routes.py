@@ -1093,7 +1093,7 @@ def order_complete():
     receipt_info = [first_name, current_date_with_time, product_names_purchased, round(product_total_price, 2), round(stripe_fee, 2), round(
         hst_fee, 2), round(total_charge, 2), first_name, last_name, address, city, province, postal, phone_number, email]
 
-    send_email.delay(ticket_info, email, give_receipt, receipt_info, image_names)
+    just_send_email(ticket_info, email, give_receipt, receipt_info, image_names)
     
     session.pop('cart')
     session.pop('cart_count')
@@ -1104,6 +1104,22 @@ def order_complete():
 
 @celery.task
 def send_email(ticket_info, email, give_receipt = False, receipt_info = None, images_to_delete=None):
+    pdf_ticket_link = ticketgen.TicketOrdered(ticket_info)
+
+    try:
+        ConcertShop.send_custom_email(email, pdf_ticket_link, give_receipt, receipt_info)
+    except Exception as e:
+        flash("Email Error: Please Contact mikepresman@gmail.com and be aware that your ticket HAS been processed")
+        logging.info("Failed Process")
+        logging.info(email,pdf_ticket_link,give_receipt,receipt_info)
+
+    os.remove(pdf_ticket_link)
+
+    if images_to_delete is not None:
+        for each in images_to_delete:
+            os.remove(each)
+
+def just_send_email(ticket_info, email, give_receipt = False, receipt_info = None, images_to_delete=None):
     pdf_ticket_link = ticketgen.TicketOrdered(ticket_info)
 
     try:

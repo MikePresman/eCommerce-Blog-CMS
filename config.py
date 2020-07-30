@@ -11,8 +11,8 @@ class Config(object):
     MAIL_PORT = 587
     MAIL_USE_TLS = True
     MAIL_USE_SSL = False
-    MAIL_USERNAME = ''
-    MAIL_PASSWORD = ''
+    MAIL_USERNAME = '' #SET THIS TO SEND EMAILS
+    MAIL_PASSWORD = ''#SET THIS TO SEND EMAILS
     MAIL_SUPPRESS_SEND = False
     CELERY_BROKER_URL = 'amqp://localhost//'
     UPLOAD_GALLERY_FOLDER = 'vms/static/img/uploads/gallery'
